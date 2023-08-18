@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+import AllPosts from './components/AllPosts';
+import AddPost from './components/AddPost';
+import EditPost from './components/EditPost';
+import FavoritePosts from './components/FavoritePosts';
+import SinglePost from './components/SinglePost';
+import NotFound from './components/NotFound';
+import SearchPosts from './components/SearchPosts';
+
+
+
+
+
+import axios from 'axios';
 
 function App() {
+  const api = axios.create({
+    baseURL: 'http://localhost:5000', 
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavBar />
+      <Switch>
+  <Route exact path="/" component={AllPosts} />
+  <Route path="/add-post" component={AddPost} />
+  <Route path="/post/:id" component={SinglePost} />
+  <Route path="/edit-post/:id" component={EditPost} />
+  <Route path="/favorites" component={FavoritePosts} />
+  <Route path="/search" component={SearchPosts} />
+  <Route component={NotFound} /> {}
+</Switch>
+
+      <Footer />
+    </Router>
   );
 }
 

@@ -1,0 +1,6 @@
+{
+    "posts": [
+      { "id": 1, "title": "Пост 1", "body": "Содержание поста 1", "image": "image1.jpg", "likes": 0, "favorite": false }
+    ]
+  }
+  
